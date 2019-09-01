@@ -1,5 +1,7 @@
 {
   "name": "RandomList",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
