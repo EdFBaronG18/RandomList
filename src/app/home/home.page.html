@@ -1,14 +1,98 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-toolbar color="success">
+    <ion-title>RandomList</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="borrar()">
+        <ion-icon
+          slot="end"
+          name="trash"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title color="primary">
+          <b>Agregar Palabras</b>
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-text color="primary">
+          Escribe palabras separadas por comas:
+        </ion-text>
+
+        <ion-textarea
+          [(ngModel)]="lista"
+          class="area"
+          auto-grow="true"
+        ></ion-textarea>
+
+        <div class="botonR">
+          <ion-button
+            (click)="randomElement()"
+            fill="outline"
+            shape="round"
+            color="success"
+          >Play</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-text color="primary">
+      <h1>{{palabra}}</h1>
+    </ion-text>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle color="primary">Duración (Segundos)</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-range
+              [(ngModel)]="seg"
+              dualKnobs="false"
+              min="1"
+              max="10"
+              step="1"
+              snaps="true"
+            ></ion-range>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
   </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Ejemplos</ion-label>
+
+      <ion-select
+        interface="action-sheet"
+        placeholder="Selecciona"
+        cancelText="Cancelar"
+        [(ngModel)]="seleccion"
+      >
+        <ion-select-option
+          *ngFor="let ejemplo of ejemplos"
+          [value]="ejemplo"
+        >{{ejemplo.nombres}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar class="footer">
+    <ion-label>
+      Edward Baron - Marlon Estupiñan
+    </ion-label>
+  </ion-toolbar>
+</ion-footer>
